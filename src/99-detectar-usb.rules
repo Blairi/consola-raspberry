@@ -1,0 +1,2 @@
+SUBSYSTEM=="block", KERNEL=="sd[a-z]", ACTION=="add", RUN+="/usr/local/bin/usb_detectada.sh"
+

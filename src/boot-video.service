@@ -1,0 +1,19 @@
+[Unit]
+Description=Video de arranque personalizado
+DefaultDependencies=no
+After=local-fs.target
+Before=getty@tty1.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/boot-video.sh
+StandardOutput=tty1
+StandardError=tty1
+TTYPath=/dev/tty1
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+
+[Install]
+WantedBy=multi-user.target
+
