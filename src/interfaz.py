@@ -1,7 +1,12 @@
-import pygame
 import time
 import os
 import subprocess
+import sys
+
+sys.stdout = open(os.devnull, "w")
+sys.stderr = open(os.devnull, "w")
+
+import pygame
 
 # --- CONFIGURACION ---
 ANCHO, ALTO = 800, 600
@@ -33,7 +38,6 @@ class InterfazKat:
         # 2. Inicializar el mezclador de audio
         try:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
-            print("Controlador de audio iniciado.")
         except Exception as e:
             print(f"Error al iniciar el audio: {e}")
         
@@ -234,7 +238,6 @@ class InterfazKat:
            self.joystick = None
            emu_path = "/home/kat/snes/snes9x/unix/snes9x"
            conf_path = "/home/kat/snes/snes9x/unix/snes9x.conf"
-           script_path = "/home/kat/src/x_snes.sh"
 
            with open(xinitrc_path, "r") as f:
               lineas = f.readlines()
@@ -250,7 +253,7 @@ class InterfazKat:
 
            pygame.mixer.music.pause()
            pygame.quit()
-           self.proceso_juego = subprocess.Popen([script_path])
+           os.system("./x_snes.sh")
         
         elif consola == "GBA" or consola == "NES":
            self.joystick = None
@@ -273,7 +276,7 @@ class InterfazKat:
 
            pygame.mixer.music.pause()
            pygame.quit()
-           subprocess.Popen([script_path])
+           os.system("./mednafen_launch.sh")
 
         else:
           print("Consola no reconocida")
