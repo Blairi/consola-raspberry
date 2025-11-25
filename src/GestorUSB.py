@@ -2,6 +2,8 @@ import shutil
 import time
 import os
 import subprocess
+import sys
+import time
 
 def watcher_usb():
     archivo_evento = "/tmp/usb_event_detected"
@@ -40,7 +42,13 @@ def handle_usb_insertion():
         print("Desmontando USB...")
         os.system("sudo umount /mnt/usb")
         os.system("sudo rm -f /tmp/usb_event_detected")
-        os.system("sudo reboot")
+        os.system("killall snes9x")
+        os.system("killall mednafen")
+        os.system("chvt 1")
+        time.sleep(1)
+        os.system("python3 interfaz.py")
+        sys.exit(0)
+
     else:
         print("No había ROMs nuevas para copiar.")
         print(f"Se copiaron {archivos_copiados} archivos nuevos.")
