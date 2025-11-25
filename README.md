@@ -203,7 +203,7 @@ consola-raspberry/
 
 ## Créditos
 - Montiel Aviles Axel Fernando
-- []
+- Nieto Rodríguez Tomás Andrés
 - []
 - **Emuladores**: Mednafen, Snes9x
 - **Framework gráfico**: Pygame
