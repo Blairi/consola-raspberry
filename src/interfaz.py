@@ -286,11 +286,11 @@ class InterfazKat:
            with open(script_path, "r") as f:
               lineas = f.readlines()
            
-           while len(lineas) < 5:
+           while len(lineas) < 28:
               lineas.append("\n")
 
            cmd = f'mednafen "{ruta_rom}"\n'
-           lineas[4] = cmd
+           lineas[27] = cmd
 
            with open(script_path, "w") as f:
               f.writelines(lineas)
@@ -412,6 +412,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ocurrio un error fatal: {e}")
         pygame.quit()
+
 
 
 
