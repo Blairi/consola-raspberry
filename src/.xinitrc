@@ -1,4 +1,5 @@
 #!/bin/sh
+# yyy
 xset -dpms
 xset s off
 xset s noblank
