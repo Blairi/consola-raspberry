@@ -199,7 +199,9 @@ consola-raspberry/
 ├── LICENSE
 └── README.md
 ```
-
+## Enlaces.
+Video demostrativo: https://youtu.be/38Vu5dwyfHE?si=YjLWgiqUtHVyZuvO
+GitHub: https://github.com/Blairi/consola-raspberry
 
 ## Créditos
 - Montiel Aviles Axel Fernando
