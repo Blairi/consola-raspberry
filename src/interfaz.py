@@ -25,7 +25,6 @@ SOFTWARE.
 '''
 import time
 import os
-import subprocess
 import sys
 
 sys.stdout = open(os.devnull, "w")
@@ -413,5 +412,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ocurrio un error fatal: {e}")
         pygame.quit()
+
 
 
