@@ -1,6 +1,7 @@
 #!/bin/bash
-# Espera unos segundos a que cargue el framebuffer y el audio
+# Esperar framebuffer/audio
 sleep 3
-# Reproduce el video en pantalla completa sin mostrar nada más
-sudo mpv --vo=sdl --hwdec=auto --fullscreen --no-terminal --cursor-autohide=always /usr/local/share/bootanim/intro.mp4
+# Reproducir el video en tty1
+mpv --vo=sdl --hwdec=auto --fullscreen --no-terminal --cursor-autohide=always /usr/local/share/bootanim/intro.mp4
 clear > /dev/tty1
+

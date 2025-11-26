@@ -1,15 +1,14 @@
 #!/bin/bash
 # Script para lanzar Snes9x en tty3 de forma limpia
-
+killall -9 python3
+python3 GestorUSB.py &
 # Cambiar a tty3
-chvt 3
-
-# Limpiar variables de X del frontend
-unset DISPLAY
-unset XAUTHORITY
+sudo chvt 3
 
 # Lanzar Xorg en tty3 con configuración mínima
-startx -- :1
+startx
+killall -9 snes9x
 chvt 1
-killall python3
+killall -9 python3
+killall -9 mednafen
 python3 interfaz.py
