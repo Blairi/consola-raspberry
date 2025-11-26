@@ -266,11 +266,11 @@ class InterfazKat:
            with open(xinitrc_path, "r") as f:
               lineas = f.readlines()
 
-           while len(lineas) < 8:
+           while len(lineas) < 31:
               lineas.append("\n")
 
            cmd = f'cd /home/pi/snes/snes9x/unix && ./snes9x -paddev1 /dev/input/js0 -conf snes9x.conf "{ruta_rom}"\n'
-           lineas[7] = cmd
+           lineas[30] = cmd
 
            with open(xinitrc_path, "w") as f:
               f.writelines(lineas)
@@ -412,6 +412,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ocurrio un error fatal: {e}")
         pygame.quit()
+
 
 
 
