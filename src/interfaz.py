@@ -1,3 +1,28 @@
+'''
+MIT License
+
+Copyright (c) 2025 Nieto Rodríguez Tomás Andrés
+Copyright (c) 2025 Guadarrama Herrera Ken Bryan
+Copyright (c) 2025 Montiel Aviles Axel Fernando
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
 import time
 import os
 import subprocess
@@ -200,7 +225,7 @@ class InterfazKat:
         self.pantalla.blit(pie, (50, self.alto - 40))
 
         pygame.display.flip()
-
+    # 6. PREPARACIÓN ROMS GBA (Crea el tipo de almacenamiento para el archivo de guardado)
     def preparar_gba(self, ruta_rom):
         nombre_juego = os.path.splitext(os.path.basename(ruta_rom))[0]
         sav_dir = os.path.expanduser("~/.mednafen/sav")
@@ -215,7 +240,7 @@ class InterfazKat:
            f.write("flash 128\n")
 
         print(f"[Mednafen] Archivo .type creado: {type_path}")
-
+    # 7. SELECCIÓN DE JUEGO
     def seleccionar_juego(self, indice):
         juego = self.juegos_actuales[indice]
         consola = self.consolas[self.idx_consola]
@@ -388,3 +413,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ocurrio un error fatal: {e}")
         pygame.quit()
+
