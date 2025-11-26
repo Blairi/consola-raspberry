@@ -49,7 +49,7 @@ POS_FONDO_X = 0
 # CONFIGURACION AUDIO
 NOMBRE_MUSICA_FONDO = "background.mp3" 
 NOMBRE_SONIDO_MOVER = "move.mp3"      
-RUTA_ROMS = "/home/kat/roms"
+RUTA_ROMS = "/home/pi/roms"
 
 
 class InterfazKat:
@@ -261,8 +261,8 @@ class InterfazKat:
 
         if consola == "SNES":
            self.joystick = None
-           emu_path = "/home/kat/snes/snes9x/unix/snes9x"
-           conf_path = "/home/kat/snes/snes9x/unix/snes9x.conf"
+           emu_path = "/home/pi/snes/snes9x/unix/snes9x"
+           conf_path = "/home/pi/snes/snes9x/unix/snes9x.conf"
 
            with open(xinitrc_path, "r") as f:
               lineas = f.readlines()
@@ -270,7 +270,7 @@ class InterfazKat:
            while len(lineas) < 8:
               lineas.append("\n")
 
-           cmd = f'cd /home/kat/snes/snes9x/unix && ./snes9x -paddev1 /dev/input/js0 -conf snes9x.conf "{ruta_rom}"\n'
+           cmd = f'cd /home/pi/snes/snes9x/unix && ./snes9x -paddev1 /dev/input/js0 -conf snes9x.conf "{ruta_rom}"\n'
            lineas[7] = cmd
 
            with open(xinitrc_path, "w") as f:
@@ -282,7 +282,7 @@ class InterfazKat:
         
         elif consola == "GBA" or consola == "NES":
            self.joystick = None
-           script_path = "/home/kat/src/mednafen_launch.sh"
+           script_path = "/home/pi/src/mednafen_launch.sh"
            
            with open(script_path, "r") as f:
               lineas = f.readlines()
@@ -413,4 +413,5 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ocurrio un error fatal: {e}")
         pygame.quit()
+
 
