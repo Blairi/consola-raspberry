@@ -154,8 +154,8 @@ cp tus_juegos/*.nes ~/roms/  # NES
 nano ~/.bash_profile
 
 # Agregar las siguientes líneas al final del archivo:
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    cd ~/consola-raspberry/src
+if [ "$(tty)" = "/dev/tty1" ]; then
+    cd /home/kat/src
     python3 interfaz.py
 fi
 
@@ -185,17 +185,17 @@ La consola se iniciará automáticamente después del arranque.
 
 ```
 consola-raspberry/
-├── config/              # Archivos de configuración del sistema
+├── src/              
 │   ├── cmdline.txt
 │   └── .xinitrc
-├── scripts/             # Scripts de utilidad
-│   ├── mednafen_launch.sh
+|   ├── mednafen_launch.sh
 │   ├── restart.sh
 │   └── x_snes.sh
-├── src/                 # Código fuente
-│   ├── interfaz.py      # Interfaz principal
-│   ├── GestorUSB.py     # Gestor de ROMs por USB
+|   ├── interfaz.py
+│   ├── GestorUSB.py
 │   └── diagnostico_control.py
+|── vid/
+|   └── video.txt
 ├── LICENSE
 └── README.md
 ```
@@ -204,7 +204,7 @@ consola-raspberry/
 ## Créditos
 - Montiel Aviles Axel Fernando
 - Nieto Rodríguez Tomás Andrés
-- []
+- Guadarrama Herrera Ken Bryan
 - **Emuladores**: Mednafen, Snes9x
 - **Framework gráfico**: Pygame
 - **Hardware**: Raspberry Pi Foundation
