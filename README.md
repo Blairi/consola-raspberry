@@ -38,9 +38,7 @@ Consola de videojuegos retro para Raspberry Pi 3 con interfaz gráfica personali
 sudo apt update && sudo apt upgrade -y
 
 # Instalar dependencias del sistema
-sudo apt install -y python3 python3-pip git xorg xinit \
-    alsa-utils pulseaudio libasound2-dev libsdl2-dev \
-    libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-ttf-2.0-0
+sudo apt install git build-essential libsdl2-dev make libasound2-dev libsdl2-image-dev libsdl2-ttf-dev mpv server-xorg xinit x11-xserver-utils xboxdrv -y
 ```
 
 ### 2. Instalar Emuladores
@@ -73,7 +71,7 @@ cd consola-raspberry
 ### 4. Instalar Dependencias de Python
 
 ```bash
-pip3 install pygame
+sudo apt install python3-pygame
 ```
 
 ### 5. Configurar el Sistema
@@ -91,12 +89,14 @@ sudo mkdir -p /mnt/usb
 ```bash
 # Copiar archivos al directorio home del usuario 'kat'
 # (Ajusta el usuario según tu configuración)
-cp config/.xinitrc ~/.xinitrc
+cp src/.xinitrc ~/.xinitrc
 chmod +x ~/.xinitrc
 
 # Copiar scripts ejecutables
-sudo cp scripts/*.sh /usr/local/bin/
-sudo chmod +x /usr/local/bin/*.sh
+sudo cp src/usb_detectada.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/usb_detectada.sh
+sudo cp src/boot-video.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/boot-video.sh
 ```
 
 #### c) Configurar parámetros de arranque
@@ -104,7 +104,7 @@ sudo chmod +x /usr/local/bin/*.sh
 # Copiar contenido del archivo config/cmdline.txt a /boot/firmware/cmdline.txt
 # Esto configura el arranque silencioso y la terminal
 sudo cp /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.backup
-sudo cp config/cmdline.txt /boot/firmware/cmdline.txt
+sudo cp src/cmdline.txt /boot/firmware/cmdline.txt
 ```
 
 ### 6. Configurar Rutas en el Código
@@ -117,23 +117,23 @@ nano src/interfaz.py
 # Cambiar todas las rutas /home/kat/ por /home/TU_USUARIO/
 
 # Editar scripts
-nano scripts/mednafen_launch.sh
-nano scripts/x_snes.sh
-nano scripts/restart.sh
+nano src/mednafen_launch.sh
+nano src/x_snes.sh
+nano src/restart.sh
 # Ajustar rutas en cada script
 ```
 
 ### 7. Preparar Assets
 
 ```bash
-# Los archivos de recursos (imágenes y audio) deben estar en la raíz del proyecto:
+# Los archivos de recursos (imágenes y audio) deben estar en el directorio src del proyecto:
 # - logo.png
 # - fondo.png
 # - background.mp3
 # - move.mp3
 
-# Si tienes estos archivos en otra ubicación, cópialos a la raíz del proyecto
-cd ~/consola-raspberry
+# Si tienes estos archivos en otra ubicación, cópialos al directorio src del proyecto
+cd ~/src
 # Ejemplo: cp /ruta/a/tus/archivos/*.png .
 #          cp /ruta/a/tus/archivos/*.mp3 .
 ```
@@ -150,8 +150,8 @@ cp tus_juegos/*.nes ~/roms/  # NES
 ### 9. Configurar Arranque Automático
 
 ```bash
-# Editar el archivo .bashrc para iniciar la consola automáticamente
-nano ~/.bashrc
+# Editar el archivo .bash_profile para iniciar la consola automáticamente
+nano ~/.bash_profile
 
 # Agregar las siguientes líneas al final del archivo:
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
