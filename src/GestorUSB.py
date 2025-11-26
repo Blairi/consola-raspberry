@@ -26,7 +26,6 @@ SOFTWARE.
 import shutil
 import time
 import os
-import subprocess
 import sys
 import time
 # 1. BUCLE DE REVISIÓN DE PUERTO USB
@@ -49,7 +48,7 @@ def handle_usb_insertion():
     print("USB detectada: copiando ROMS...")
     os.system("sudo mount /dev/sd*1 /mnt/usb")
     origen = "/mnt/usb/"
-    destino = "/home/kat/roms/"
+    destino = "/home/pi/roms/"
     archivos_copiados = 0
     for archivo in os.listdir(origen):
         if archivo.lower().endswith((".gba", ".sfc", ".nes")):
